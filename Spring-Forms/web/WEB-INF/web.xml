@@ -5,7 +5,17 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         version="3.1">
-    <display-name> Spring-MVC </display-name>
+    <display-name> Spring Form  </display-name>
+    <!--
+            Session
+         -->
+    <session-config>
+        <session-timeout>1</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
     <!--
             JSP
          -->
@@ -20,14 +30,5 @@
             <default-content-type>text/html</default-content-type>
         </jsp-property-group>
     </jsp-config>
-    <!--
-            Session
-         -->
-    <session-config>
-        <session-timeout>1</session-timeout>
-        <cookie-config>
-            <http-only>true</http-only>
-        </cookie-config>
-        <tracking-mode>COOKIE</tracking-mode>
-    </session-config>
+
 </web-app>
