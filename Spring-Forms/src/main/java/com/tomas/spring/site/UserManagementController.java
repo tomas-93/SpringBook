@@ -70,6 +70,11 @@ public class UserManagementController
 
         return new RedirectView("/user/list", true, false);
     }
+     @RequestMapping(value="user/option",  method = RequestMethod.GET)
+     public String option()
+     {
+          return "user/option";
+     }
 
     private synchronized long getNextUserId()
     {

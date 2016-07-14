@@ -31,8 +31,7 @@ public class Bootstrap implements WebApplicationInitializer
         );
         dispatcher.setLoadOnStartup(1);
         dispatcher.setMultipartConfig(new MultipartConfigElement(
-                null, 20_971_520L, 41_943_040L, 512_000
-        ));
+                null, 20_971_520L, 41_943_040L, 512_000));
         dispatcher.addMapping("/");
     }
 }

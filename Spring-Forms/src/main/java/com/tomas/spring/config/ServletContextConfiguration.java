@@ -50,11 +50,15 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
     public void configureMessageConverters(
             List<HttpMessageConverter<?>> converters
     ) {
+          //Uso de bytges Http headers
         converters.add(new ByteArrayHttpMessageConverter());
+         //uso de string o text/plan en httpmessage
         converters.add(new StringHttpMessageConverter());
+         //Uso multipart para el envio y carga de archivos del formulario
         converters.add(new FormHttpMessageConverter());
+         //Lectura y escritura de objetos Sources
         converters.add(new SourceHttpMessageConverter<>());
-
+          //Lectura y escritura de XML uso de sprgin
         MarshallingHttpMessageConverter xmlConverter =
                 new MarshallingHttpMessageConverter();
         xmlConverter.setSupportedMediaTypes(Arrays.asList(
@@ -64,7 +68,7 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
         xmlConverter.setMarshaller(this.marshaller);
         xmlConverter.setUnmarshaller(this.unmarshaller);
         converters.add(xmlConverter);
-
+          //Para la lectura y escritura de JSON con el uso de JACKSON
         MappingJackson2HttpMessageConverter jsonConverter =
                 new MappingJackson2HttpMessageConverter();
         jsonConverter.setSupportedMediaTypes(Arrays.asList(
@@ -79,6 +83,7 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
     public void configureContentNegotiation(
             ContentNegotiationConfigurer configurer)
     {
+         //Configuracion los tipo de peticiones, ya sea por xml o json
         configurer.favorPathExtension(true).favorParameter(false)
                 .parameterName("mediaType").ignoreAcceptHeader(false)
                 .useJaf(false).defaultContentType(MediaType.APPLICATION_XML)
@@ -89,6 +94,8 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
     @Bean
     public ViewResolver viewResolver()
     {
+         //Configuracion de donde se encuentran los archivos estaticos. y el uso forwards
+         //del modelo hacia la vista
         InternalResourceViewResolver resolver =
                 new InternalResourceViewResolver();
         resolver.setViewClass(JstlView.class);
@@ -96,13 +103,27 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
+     /*
+          View name translator ayuda en la simplificacion
+          de la URL en el request al -> nobre de la vita
+          http://localhost:8080/gamecast/display.html » display
+          http://localhost:8080/gamecast/displayShoppingCart.html » displayShoppingCart
+          http://localhost:8080/gamecast/admin/index.html » admin/index
+      */
     @Bean
     public RequestToViewNameTranslator viewNameTranslator()
     {
         return new DefaultRequestToViewNameTranslator();
     }
+     /*
+          Una interfaz de estrategia para la resolución de carga de archivos de varias partes de
+          conformidad con el RFC 1867 . Implementaciones son típicamente utilizable tanto dentro
+          de un contexto de aplicación y autónomo.
 
+          Hay dos implementaciones concretas incluidas en la primavera, a partir de la primavera 3,1:
+               *CommonsMultipartResolver para Apache Commons FileUpload
+               *StandardServletMultipartResolver para el Servlet API 3.0 + Parte
+      */
     @Bean
     public MultipartResolver multipartResolver()
     {
