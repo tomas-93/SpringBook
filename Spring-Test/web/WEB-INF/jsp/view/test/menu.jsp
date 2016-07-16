@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="card" style="margin: 5%;">
-        <h4>Uso de @RequestMapping</h4>
+        <h5>Uso de @RequestMapping</h5>
         <ul>
             <li>
                 <a href="<c:url value="/view"/>">Vista-Implicita</a>
@@ -43,7 +43,7 @@
         </ul>
     </div>
     <div class="card" style="margin: 5%;">
-        <h4>Uso de @RequestParam</h4>
+        <h5>Uso de @RequestParam</h5>
         <ul>
             <li>
                 <a href="<c:url value="/var-test4">
@@ -81,7 +81,7 @@
         </ul>
     </div>
     <div class="card" style="margin: 5%;">
-        <h4>Uso de @PathVariable</h4>
+        <h5>Uso de @PathVariable</h5>
         <ul>
             <li>
                 <a href="<c:url value="/head-test4">
@@ -90,7 +90,7 @@
         </ul>
     </div>
     <div class="card" style="margin: 5%;">
-        <h4>Uso de @RequestHeader</h4>
+        <h5>Uso de @RequestHeader</h5>
         <ul>
             <li>
                 <a href="<c:url value="/head-test4">
@@ -100,13 +100,13 @@
     </div>
 
     <div class="card" style="margin: 5%;">
-        <h4>Uso de @PathVariable</h4>
+        <h5>Uso de @PathVariable</h5>
         <ul>
             <li>
                 <a href="<c:url value="/user/name/tomas/age/23"/>">Ruta url: user/name/{Tomas}/age/{23}</a>
             </li>
         </ul>
-        <h4>Uso de @PathVariable y @MatrixVariable</h4>
+        <h5>Uso de @PathVariable y @MatrixVariable</h5>
         <ul>
             <li>
                 <a href="<c:url value="/user/1;floor=1;room=23/end"/>">Ruta Matrix url: /user/1;floor=1;room=23/end</a>
@@ -114,8 +114,26 @@
         </ul>
     </div>
     <div class="card" style="margin: 5%;">
-        <h4>Uso de Formulario</h4>
+        <h5>Uso de Formulario</h5>
         <a href="<c:url value="/test/form"/>">Forumularios</a>
+
+    </div>
+    <div class="card" style="margin: 5%;">
+        <h5>Service y Prueba de Traductor de Nombre de Vista</h5>
+        <ul>
+            <li>
+                <a href="<c:url value="/services/model/one/1.json"/>">Primer Modelo JSON</a>
+            </li>
+            <li>
+                <a href="<c:url value="/services/model/two/Nombre espécificado en la url.json"/>">Segundo Modelo JSON</a>
+            </li>
+            <li>
+                <a href="<c:url value="/services/model/one/1.xml"/>">Primer Modelo XML</a>
+            </li>
+            <li>
+                <a href="<c:url value="/services/model/two/ListaUno.xml"/>">Segundo Modelo XML</a>
+            </li>
+        </ul>
 
     </div>
     <!-- Compiled and minified JavaScript -->

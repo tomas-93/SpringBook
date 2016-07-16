@@ -37,9 +37,8 @@ public class HomeController
         user.setName("Adam Johnson");
         return user;
     }
-
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    @ResponseBody
+     @ResponseBody
+     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     public User getUser(@PathVariable("userId") long userId)
     {
         User user = new User();

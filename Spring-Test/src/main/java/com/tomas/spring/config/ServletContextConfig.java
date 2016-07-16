@@ -58,6 +58,14 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter
           converters.add(new FormHttpMessageConverter());
           converters.add(new SourceHttpMessageConverter<>());
 
+          MarshallingHttpMessageConverter xmlConverters = new MarshallingHttpMessageConverter();
+          xmlConverters.setSupportedMediaTypes(Arrays.asList(
+                  new MediaType("application", "xml"),
+                  new MediaType("text", "xml")));
+          xmlConverters.setMarshaller(this.marshaller);
+          xmlConverters.setUnmarshaller(this.unmarshaller);
+          converters.add(xmlConverters);
+
           MappingJackson2HttpMessageConverter jsonConverter =
                   new MappingJackson2HttpMessageConverter();
           jsonConverter.setSupportedMediaTypes(Arrays.asList(
@@ -67,13 +75,7 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter
           jsonConverter.setObjectMapper(this.objectMapper);
           converters.add(jsonConverter);
 
-          MarshallingHttpMessageConverter xmlConverters = new MarshallingHttpMessageConverter();
-          xmlConverters.setSupportedMediaTypes(Arrays.asList(
-                  new MediaType("application", "xml"),
-                  new MediaType("text", "xml")));
-          xmlConverters.setMarshaller(this.marshaller);
-          xmlConverters.setUnmarshaller(this.unmarshaller);
-          converters.add(xmlConverters);
+
      }
      @Override
      public void configureContentNegotiation(
